@@ -13,8 +13,9 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.max_content_id = 3
     this.state = {
-      mode: "read",
+      mode: "create",
       selected_content_id: 2,
       subject: {
         title: "React",
@@ -49,7 +50,11 @@ class App extends Component {
         }
       }
     } else if (this.state.mode === "create") {
-      _article = <CreateContent></CreateContent>;
+      _article = <CreateContent onSubmit={function (_title, _desc) {
+        this.max_content_id = this.max_content_id + 1;
+        let _content = this.state.contents.concat({id: this.max_content_id, title: _title, desc: _desc});
+        this.setState({contents: _content})
+      }.bind(this)}></CreateContent>;
     } else if (this.state.mode === "update") {
       _article = <UpdateContent></UpdateContent>;
     } else if (this.state.mode === "delete") {
