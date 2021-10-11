@@ -2,7 +2,11 @@ import './App.css';
 import React, {Component} from "react";
 import Subject from "./Components/Subject";
 import TOC from "./Components/TOC";
-import Contents from "./Components/Contents";
+import ReadContent from "./Components/ReadContent";
+import Control from "./Components/Control";
+import CreateContent from "./Components/CreateContent";
+import UpdateContent from "./Components/UpdateContent";
+import DeleteContent from "./Components/DeleteContent";
 
 
 class App extends Component {
@@ -29,19 +33,27 @@ class App extends Component {
   }
 
   render() {
-    let _title, _desc = null;
+    let _title, _desc, _article = null;
 
     if (this.state.mode === "Welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
     } else if (this.state.mode === "read") {
       for (let i = 0; i < this.state.contents.length; i++) {
         let data = this.state.contents[i];
         if (data.id === this.state.selected_content_id) {
           _title = data.title;
           _desc = data.desc;
+          _article = <ReadContent title={_title} desc={_desc}></ReadContent>;
         }
       }
+    } else if (this.state.mode === "create") {
+      _article = <CreateContent></CreateContent>;
+    } else if (this.state.mode === "update") {
+      _article = <UpdateContent></UpdateContent>;
+    } else if (this.state.mode === "delete") {
+      _article = <DeleteContent></DeleteContent>;
     }
 
     return (
@@ -63,7 +75,12 @@ class App extends Component {
               selected_content_id: Number(id)
             })
           }.bind(this)}></TOC>
-        <Contents title={_title} desc={_desc}></Contents>
+        <Control onChangeMode={function (_mode) {
+          this.setState({
+            mode: _mode
+          })
+        }.bind(this)}></Control>
+        {_article}
       </div>
     );
   }
