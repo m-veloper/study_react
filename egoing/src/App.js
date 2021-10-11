@@ -6,7 +6,6 @@ import ReadContent from "./Components/ReadContent";
 import Control from "./Components/Control";
 import CreateContent from "./Components/CreateContent";
 import UpdateContent from "./Components/UpdateContent";
-import DeleteContent from "./Components/DeleteContent";
 
 
 class App extends Component {
@@ -15,7 +14,7 @@ class App extends Component {
     super(props);
     this.max_content_id = 3
     this.state = {
-      mode: "create",
+      mode: "Welcome",
       selected_content_id: 2,
       subject: {
         title: "React",
@@ -79,8 +78,6 @@ class App extends Component {
             mode: "read"
           })
         }.bind(this)}></UpdateContent>;
-    } else if (this.state.mode === "delete") {
-      _article = <DeleteContent></DeleteContent>;
     }
     return _article;
   }
@@ -106,10 +103,25 @@ class App extends Component {
             })
           }.bind(this)}></TOC>
         <Control onChangeMode={function (_mode) {
-          this.setState({
-            mode: _mode
-          })
-        }.bind(this)}></Control>
+          if (_mode === "delete") {
+            if (window.confirm("정말 삭제할까요?")) {
+              let _contents = Array.from(this.state.contents);
+              for (let i = 0; i < _contents.length; i++) {
+                if (_contents[i].id === this.state.selected_content_id) {
+                  _contents.splice(i, 1);
+                }
+              }
+              this.setState({
+                mode: "Welcome",
+                contents: _contents
+              })
+            }
+          } else {
+            this.setState({
+              mode: _mode
+            })
+          }
+        }.bind(this)}> < /Control>
         {this.getContent()}
       </div>
     );
