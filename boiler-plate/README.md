@@ -27,6 +27,22 @@
 
 - 명령어 : npm install nodemon --save-dev
 
+## bcrypt 설치
+
+- [바로 가기](https://www.npmjs.com/package/bcrypt)
+- 명령어 : npm install bcrypt --save
+
+## jsonwebtoken 설치
+
+- [바로 가기](https://www.npmjs.com/package/jsonwebtoken)
+- 명령어 : npm install jsonwebtoken --save
+
+## cookie-parser 설치
+
+- 명령어 : npm install cookie-parser - save
+
+
+
 
 
 
