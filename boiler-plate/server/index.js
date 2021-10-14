@@ -32,6 +32,10 @@ app.get('/', (req, res) => {
   res.send("<h1>서버 연결</h1>");
 })
 
+app.get('/api/hello', (req, res) => {
+  res.send("axios test 성공");
+})
+
 /**
  * 등록 라우터
  */
