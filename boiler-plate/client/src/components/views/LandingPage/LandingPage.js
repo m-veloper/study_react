@@ -7,8 +7,14 @@ function LandingPage() {
       .then(response => console.log(response.data))
   }, [])
   return (
-    <div>
-      LandingPage ddddddddddddd
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      height: "100vh"
+    }}>
+      <h1>랜딩페이지</h1>
     </div>
   )
 }
