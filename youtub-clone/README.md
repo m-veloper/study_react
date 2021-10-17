@@ -15,4 +15,14 @@ You can watch the tutorial for this app.
 
 https://www.youtube.com/channel/UCFyXA9x8lpL3EYWeYhj4C4Q?view_as=subscriber
 
+### ==========================================================
+
+### react-dropzone 설치
+
+- 명령어 : npm install react-dropzone --save
+
+
+
+
+
 
