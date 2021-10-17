@@ -17,9 +17,17 @@ https://www.youtube.com/channel/UCFyXA9x8lpL3EYWeYhj4C4Q?view_as=subscriber
 
 ### ==========================================================
 
-### react-dropzone 설치
+# React
+
+### 파일 업로드 dependencies : react-dropzone 설치
 
 - 명령어 : npm install react-dropzone --save
+
+# Node
+
+### 파일 저장 dependencies : multer 설치
+
+- 명령어 : npm install multer --save
 
 
 

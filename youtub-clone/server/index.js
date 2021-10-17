@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
-
+// app.use('/api/video', require('./routes/video'));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
@@ -43,7 +43,7 @@ app.use('/uploads', express.static('uploads'));
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
 
-  // Set static folder   
+  // Set static folder
   // All the javascript and css files will be read and served from this folder
   app.use(express.static("client/build"));
 
@@ -58,3 +58,42 @@ const port = process.env.PORT || 5000
 app.listen(port, () => {
   console.log(`Server Listening on ${port}`)
 });
+
+app.get('/', (req, res) => {
+  res.send("<h1>서버 연결</h1>");
+})
+
+
+const multer = require("multer");
+// const path = require("path");
+
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    if (ext !== ".mp4") {
+      // 다른 파일도 허용하고 싶다면 if (ext !== ".mp4" || ext !== ".png" ) 이런식으로 추가
+      return cb(res.state(400).end("m4 파일만 허용됩니다."), false);
+    } else {
+      cb(null, true);
+    }
+  }
+});
+// 한개의 파일만
+const upload = multer({storage: storage}).single("file");
+
+app.post('/api/video/uploadfiles', (req, res) => {
+  upload(req, res, err => {
+    if (err) {
+      return res.json({success: false, err})
+    } else {
+      return res.json({success: true, url: req.req.file.path, fileName: req.req.file.fileName});
+    }
+  })
+});
+
