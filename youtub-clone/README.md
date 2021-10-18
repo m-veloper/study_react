@@ -23,11 +23,24 @@ https://www.youtube.com/channel/UCFyXA9x8lpL3EYWeYhj4C4Q?view_as=subscriber
 
 - 명령어 : npm install react-dropzone --save
 
+### 동영상 썸네일 생성 프로그램 ffmpeg 설치
+
+- 명령어
+    - 맥 : brew install ffmpeg
+    - 윈도우 : choco install ffmpeg (단 choco가 설치되어 있어야함)
+
+### 동영상 썸네일 생성 dependencies 설치
+
+- 명령어 : npm install fluent-ffmpeg
+    
+
+
 # Node
 
 ### 파일 저장 dependencies : multer 설치
 
 - 명령어 : npm install multer --save
+
 
 
 
