@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import {Typography, Button, Form, message, Input, Icon} from "antd";
 import Dropzone from "react-dropzone";
 import Axios from "axios";
+import {useDispatch} from "react-redux";
+import {upload} from "../../../_actions/user_actions";
+
 
 const {Title} = Typography;
 const {TextArea} = Input;
