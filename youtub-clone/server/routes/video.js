@@ -105,4 +105,35 @@ router.post("/uploadVideo", (req, res) => {
   })
 });
 
+/**
+ *  DB 에서 비디오 목록 가져오기
+ */
+router.get("/getVideos", (req, res) => {
+  Video.find()
+    .populate('writer')
+    .exec((err, videos) => {
+      if (err) {
+        return res.status(400).send(err);
+      } else {
+        return res.status(200).json({success: true, videos})
+      }
+    });
+});
+
+/**
+ *  DB 에서 비디오 디테일 가져오기
+ */
+router.post("/getVideoDetail", (req, res) => {
+  Video.findOne({"_id": req.body.videoId})
+    .populate('writer')
+    .exec((err, videoDetail) => {
+      if (err) {
+        return res.status(400).send(err);
+      } else {
+        return res.status(200).json({success: true, videoDetail})
+      }
+    });
+});
+
+
 module.exports = router;
