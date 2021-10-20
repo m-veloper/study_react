@@ -3,20 +3,22 @@ import {List, Avatar, Row, Col} from 'antd';
 import axios from 'axios';
 import SideVideo from './Sections/SideVideo';
 import Subscriber from './Sections/Subscriber';
-// import Comments from './Sections/Comments'
+import Comments from './Sections/Comments'
+
 // import LikeDislikes from './Sections/LikeDislikes';
 
 function VideoDetailPage(props) {
 
   const videoId = props.match.params.videoId
   const [VideoDetail, setVideoDetail] = useState([])
-  // const [CommentLists, setCommentLists] = useState([])
+  const [CommentLists, setCommentLists] = useState([])
 
   const videoVariable = {
     videoId: videoId
   }
 
   useEffect(() => {
+    // 비디오 디테일 정보
     axios.post('/api/video/getVideoDetail', videoVariable)
       .then(response => {
         if (response.data.success) {
@@ -26,27 +28,30 @@ function VideoDetailPage(props) {
         }
       })
 
-    // axios.post('/api/comment/getComments', videoVariable)
-    //   .then(response => {
-    //     if (response.data.success) {
-    //       console.log('response.data.comments', response.data.comments)
-    //       setCommentLists(response.data.comments)
-    //     } else {
-    //       alert('Failed to get video Info')
-    //     }
-    //   })
+    // 댓글 리스트
+    axios.post('/api/comment/getComments', videoVariable)
+      .then(response => {
+        if (response.data.success) {
+          console.log('response.data.comments', response.data.comments)
+          setCommentLists(response.data.comments)
+        } else {
+          alert('Failed to get video Info')
+        }
+      })
 
 
   }, [])
 
   const updateComment = (newComment) => {
-    // setCommentLists(CommentLists.concat(newComment))
+    setCommentLists(CommentLists.concat(newComment))
   }
 
 
   if (VideoDetail.writer) {
+    const subscribeButton = VideoDetail.writer._id !== localStorage.getItem('userId') &&
+      <Subscriber userTo={VideoDetail.writer._id} userFrom={localStorage.getItem('userId')}/>;
+
     return (
-      // <Row gutter={[16, 16]}>
       <Row>
         <Col lg={18} xs={24}>
           <div className="postPage" style={{width: '100%', padding: '3rem 4em'}}>
@@ -55,7 +60,7 @@ function VideoDetailPage(props) {
             <List.Item
               actions={[
                 // <LikeDislikes video videoId={videoId} userId={localStorage.getItem('userId')}/>,
-                <Subscriber userTo={VideoDetail.writer._id} userFrom={localStorage.getItem('userId')}/>]}
+                subscribeButton]}
             >
               <List.Item.Meta
                 avatar={<Avatar src={VideoDetail.writer && VideoDetail.writer.image}/>}
@@ -65,7 +70,7 @@ function VideoDetailPage(props) {
               <div></div>
             </List.Item>
 
-            {/*<Comments CommentLists={CommentLists} postId={Video._id} refreshFunction={updateComment}/>*/}
+            <Comments CommentLists={CommentLists} postId={VideoDetail._id} refreshFunction={updateComment}/>
 
           </div>
         </Col>
