@@ -4,8 +4,7 @@ import axios from 'axios';
 import SideVideo from './Sections/SideVideo';
 import Subscriber from './Sections/Subscriber';
 import Comments from './Sections/Comments'
-
-// import LikeDislikes from './Sections/LikeDislikes';
+import LikeDislikes from './Sections/LikeDislikes';
 
 function VideoDetailPage(props) {
 
@@ -59,7 +58,7 @@ function VideoDetailPage(props) {
 
             <List.Item
               actions={[
-                // <LikeDislikes video videoId={videoId} userId={localStorage.getItem('userId')}/>,
+                <LikeDislikes video videoId={videoId} userId={localStorage.getItem('userId')}/>,
                 subscribeButton]}
             >
               <List.Item.Meta
