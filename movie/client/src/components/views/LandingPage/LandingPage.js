@@ -21,6 +21,9 @@ function LandingPage() {
       .then(response => response.json())
       .then(response => {
         console.log(response)
+        // setMovies([...response.results])
+        // 이렇게 작성하면 "Load More" 버튼을 클릭시 최초 로드된 위치에 데이터들이 덮어져 버림.
+        // 최초 로드된 위치의 아래에 계속 해서 페이지를 렌더링 시키고 싶다면 " setMovies([...Movies, ...response.results])" 이렇게 사용
         setMovies([...Movies, ...response.results])
         setMainMovieImage(response.results[0])
         setCurrentPage(response.page)
@@ -28,12 +31,9 @@ function LandingPage() {
   }
 
   const loadMoreItems = () => {
-
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
     fetchMovies(endpoint)
-
   }
-
 
   return (
     <div style={{width: '100%', margin: '0'}}>
