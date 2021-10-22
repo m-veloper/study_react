@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {API_URL, API_KEY, IMAGE_BASE_URL} from '../../Config';
 import MainImage from './Sections/MainImage';
-import axios from 'axios';
-// import GridCards from '../commons/GridCards';
+import GridCard from "../Commons/GridCard";
 import {Row} from 'antd';
 
 function LandingPage() {
@@ -60,13 +59,13 @@ function LandingPage() {
 
           {Movies && Movies.map((movie, index) => (
             <React.Fragment key={index}>
-              {/*<GridCards*/}
-              {/*  landingPage*/}
-              {/*  image={movie.poster_path ?*/}
-              {/*    `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}*/}
-              {/*  movieId={movie.id}*/}
-              {/*  movieName={movie.original_title}*/}
-              {/*/>*/}
+              <GridCard
+                landingPage
+                image={movie.poster_path ?
+                  `${IMAGE_BASE_URL}w500${movie.poster_path}` : null}
+                movieId={movie.id}
+                movieName={movie.original_title}
+              />
             </React.Fragment>
           ))}
 
