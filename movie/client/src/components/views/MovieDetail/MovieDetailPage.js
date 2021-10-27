@@ -7,7 +7,8 @@ import {API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE} from '../../Config'
 import GridCard from '../Commons/GridCard';
 import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
-// import Favorite from './Sections/Favorite';
+import Favorite from './Sections/Favorite';
+
 
 function MovieDetailPage(props) {
 
@@ -89,7 +90,7 @@ function MovieDetailPage(props) {
       <div style={{width: '85%', margin: '1rem auto'}}>
 
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-          {/*<Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')}/>*/}
+          <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')}/>
         </div>
 
 
@@ -127,7 +128,8 @@ function MovieDetailPage(props) {
         </div>
 
         {/* Comments */}
-        <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment}/>
+        <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId}
+                  refreshFunction={updateComment}/>
 
       </div>
 
