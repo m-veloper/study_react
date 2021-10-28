@@ -43,9 +43,6 @@ function Favorite(props) {
           alert('정보를 가져오는데 실패 했습니다.')
         }
       })
-
-
-
   }, [])
 
 

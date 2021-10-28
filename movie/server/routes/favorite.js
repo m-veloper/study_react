@@ -19,7 +19,9 @@ router.post('/favoriteNumber', (req, res) => {
     })
 })
 
-
+/**
+ * Favorite 리스트에 넣었는지 정보를 DB 에서 가져오기
+ */
 router.post('/favorited', (req, res) => {
 
   // 내가 이 영화를  Favorite 리스트에 넣었는지   정보를  DB 에서 가져오기
@@ -38,7 +40,9 @@ router.post('/favorited', (req, res) => {
     })
 })
 
-
+/**
+ * 즐겨찾기 삭제
+ */
 router.post('/removeFromFavorite', (req, res) => {
 
   Favorite.findOneAndDelete({movieId: req.body.movieId, userFrom: req.body.userFrom})
@@ -51,7 +55,9 @@ router.post('/removeFromFavorite', (req, res) => {
     })
 })
 
-
+/**
+ * 즐겨찾기 추가
+ */
 router.post('/addToFavorite', (req, res) => {
 
   const favorite = new Favorite(req.body)
@@ -65,7 +71,9 @@ router.post('/addToFavorite', (req, res) => {
   })
 })
 
-
+/**
+ * 즐겨찾기한 영화 목록 출력
+ */
 router.post('/getFavoredMovie', (req, res) => {
 
   Favorite.find({'userFrom': req.body.userFrom})
@@ -78,6 +86,9 @@ router.post('/getFavoredMovie', (req, res) => {
     })
 })
 
+/**
+ * 즐겨찾기한 특정 영화 삭제
+ */
 router.post('/removeFromFavorite', (req, res) => {
 
   Favorite.findOneAndDelete({movieId: req.body.movieId, userFrom: req.body.userFrom})
