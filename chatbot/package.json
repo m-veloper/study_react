@@ -3,28 +3,37 @@
   "version": "1.0.0",
   "description": "chatbot-app",
   "main": "index.js",
-  "engines": {
-    "node": "10.15.0",
+  "engine": {
+    "node": "10.16.0",
     "npm": "6.9.0"
   },
   "scripts": {
     "start": "node index.js",
     "backend": "nodemon index.js",
     "frontend": "npm run front --prefix client",
-    "dev": "concurrently \"npm run backend\"  \"npm run start --prefix client\""
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
-  "author": "Jaewon Ahn",
+  "author": "John ahn",
   "license": "ISC",
   "dependencies": {
-    "actions-on-google": "^2.6.0",
+    "actions-on-google": "3.0.0",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
-    "dialogflow": "^0.8.2",
-    "dialogflow-fulfillment": "^0.6.1",
-    "express": "^4.16.4",
-    "mongoose": "^5.4.20"
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dialogflow": "1.2.0",
+    "dialogflow-fulfillment": "0.6.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.20",
+    "react-redux": "^5.0.7",
+    "saslprep": "^1.0.3",
+    "supports-color": "^7.1.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.1"
   }
 }
