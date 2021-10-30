@@ -6,13 +6,14 @@ import "antd/dist/antd.css";
 import App from "./App";
 
 import Reducer from './_reducers';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
-import { BrowserRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 import * as serviceWorker from "./serviceWorker";
+
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
 ReactDOM.render(
@@ -24,10 +25,9 @@ ReactDOM.render(
     )}
   >
     <BrowserRouter>
-      <App />
+      <App/>
     </BrowserRouter>
   </Provider>
-
   ,
   document.getElementById("root")
 );
